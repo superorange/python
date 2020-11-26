@@ -1,0 +1,87 @@
+import 'dart:io';
+
+void main() {
+  // String a = '123456';
+  // a.indexOf('pattern').pf();
+  // int b = 10;
+  // for (int x in getYieldNumber()) {
+  //   print(x);
+  // }
+  // var set1 = {1, 2, 3, 4, 5, 6};
+  // var set2 = {1, 3, 8};
+  // set1.retainAll(set2);
+  // set1.pf();
+  // set2.removeAll(set1);
+  // set2.pf();
+  // set2.addAll(set1);
+  // set2.pf();
+  // var dict = {'name': 'tjg'};
+  // var data = dict['j']?.isNotEmpty;
+  // data.pf();
+  // 'wdasd'.pf();
+
+  // a.pf();
+  // null.isExpandEmpty().pf();
+  // 'null'.isExpandEmpty().pf();
+  // var a = {};
+  // a.isExpandEmpty().pf();
+  // var b = [];
+  // b.isExpandEmpty().pf();
+  //
+  // Process.run('cls', []);
+  // var content = '北京欢迎你为你开天辟地…………';
+  // while (true) {
+  //   content.pf();
+  //   sleep(Duration(milliseconds: 200));
+  //   content = content.substring(1) + content.substring(0, 1);
+  // }
+  var data = [1, 2, 3, 4];
+  var join = data.join('');
+  // join.pf();
+  var a = '123123函数可以定义在文件的最外层，不需要把它放在类中1231231中文231231函数可以定义在文件的最外层，不需要把它放在类中函数可以定义在文件的最外层，不需要把它放在类中232423453534645123123123参数类型写在变量名之后，这有助于在类型自动推导时省略类型声明';
+  var dateTime1 = DateTime.now();
+  for (int i = 0; i <= 10; i++) {
+    a.split(r'');
+  }
+  var dateTime2 = DateTime.now();
+  var dateTime3 = DateTime.now();
+  for (int i = 0; i <= 10; i++) {
+    for (int i = 0; i < a.length; i++) {
+      a.substring(i, i + 1);
+    }
+  }
+  var dateTime4 = DateTime.now();
+  print(dateTime2.difference(dateTime1).inMilliseconds);
+  print(dateTime4.difference(dateTime3).inMilliseconds);
+  var strName = '下面这张图1是截止到2017年底，国内三家运营1998商推出2013的手机号963段。';
+
+  var replaceAll = strName.replaceAll(RegExp(r'[0-9]{1,}'), r'**/\**');
+  print(replaceAll);
+}
+
+Iterable<int> getYieldNumber() sync* {
+  int a = 0;
+  while (a < 100) {
+    a++;
+    yield a;
+  }
+}
+
+extension Pt on dynamic {
+  void pf() {
+    print(this);
+  }
+
+  bool isExpandEmpty() {
+    if (null == this) {
+      return true;
+    } else if (this is String) {
+      return this.toString().isEmpty;
+    } else if (this is Iterable) {
+      return (this as Iterable).isEmpty;
+    } else if (this is Map) {
+      return (this as Map).isEmpty;
+    }
+    return false;
+  }
+}

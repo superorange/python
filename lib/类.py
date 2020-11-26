@@ -1,3 +1,6 @@
+from abc import ABCMeta, abstractmethod
+
+
 class MyClass:
     '''一个简单的示例'''
     i = 12345
@@ -79,3 +82,78 @@ if s.resolution == 786432:
     print('测试通过!')
 else:
     print('测试失败!')
+
+
+class TestName:
+    __slots__ = ('_get', '_name')
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        self._name = name
+
+
+class ClassTest:
+    def __init__(self, age):
+        self._age = age
+        print('class Load')
+
+    @staticmethod
+    def getName():
+        return 'who am i'
+
+    @classmethod
+    def getWc(cls):
+        return 'i am your f'
+
+    @classmethod
+    def getNewClass(cls, age):
+        return cls(age)
+
+    @property
+    def age(self):
+        return self._age
+
+
+class A:
+    def __init__(self):
+        print('A Load')
+
+
+class B(A):
+    def __init__(self):
+        super().__init__()
+        print('B Load')
+
+
+class C(B):
+    def __init__(self):
+        print('C Load')
+        super().__init__()
+
+
+class AbstractClass(metaclass=ABCMeta):
+    @abstractmethod
+    def abstractMethod(self):
+        '''
+        这是一个抽象类
+        :return:
+        '''
+        pass
+
+
+class ExtendsAbstract(AbstractClass):
+
+    def abstractMethod(self):
+        print('abstractMethod')
+
+
+if __name__ == '__main__':
+    print(ClassTest.getName())
+    print(ClassTest.getWc())
+    print(ClassTest.getNewClass(10).age)
+    C()
+    ExtendsAbstract().abstractMethod()

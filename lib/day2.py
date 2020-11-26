@@ -117,5 +117,53 @@ def findShuiXianHua():
             print(num)
 
 
+def reverseInt():
+    num = int(input('num = '))
+    reversed_num = 0
+    while num > 0:
+        reversed_num = reversed_num * 10 + num % 10
+        num //= 10
+    print(reversed_num)
+
+
+# 买鸡问题
+def buyChicken():
+    for x in range(21):
+        for y in range(34):
+            z = 100 - x - y
+            if 5 * x + 3 * y + z / 3 == 100:
+                print('公鸡：%d只，母鸡：%d只，小鸡：%d只，' % (x, y, z))
+
+
+# 斐波那契数列
+def fbnq():
+    pass
+
+
+# $x_1 + x_2 + x_3 + x_4 = 8$
+def qiuJie():
+    count = 0
+    for x1 in range(9):
+        for x2 in range(9):
+            for x3 in range(9):
+                for x4 in range(9):
+                    if x1 + x2 + x3 + x4 == 8:
+                        count += 1
+                        print('%d+%d+%d+%d=8' % (x1, x2, x3, x4), end='\t')
+    print(count)
+
+
+def Hello():
+    s1 = 'hello, world!'
+    s2 = "hello, world!"
+    # 以三个双引号或单引号开头的字符串可以折行
+    s3 = """
+    hello, 
+    world!
+ttt
+    """
+    print(s1, s2, s3, end='')
+
+
 if __name__ == '__main__':
-    findShuiXianHua()
+    Hello()
