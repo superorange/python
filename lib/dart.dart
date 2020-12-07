@@ -79,9 +79,7 @@ extension Pt on dynamic {
     if (null == this) {
       return true;
     } else if (this is String) {
-      return this
-          .toString()
-          .isEmpty;
+      return this.toString().isEmpty;
     } else if (this is Iterable) {
       return (this as Iterable).isEmpty;
     } else if (this is Map) {
