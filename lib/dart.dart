@@ -1,6 +1,6 @@
 import 'dart:io';
 
-void main() {
+void e() {
   // String a = '123456';
   // a.indexOf('pattern').pf();
   // int b = 10;
@@ -57,6 +57,9 @@ void main() {
 
   var replaceAll = strName.replaceAll(RegExp(r'[0-9]{1,}'), r'**/\**');
   print(replaceAll);
+  var data1 = {'name': 'IBM', 'shares': 100, 'price': 91.1};
+  var nmhs = (x) => x['price'];
+  print("${nmhs}");
 }
 
 Iterable<int> getYieldNumber() sync* {
@@ -69,14 +72,16 @@ Iterable<int> getYieldNumber() sync* {
 
 extension Pt on dynamic {
   void pf() {
-    print(this);
+    print('${this.toString()}');
   }
 
   bool isExpandEmpty() {
     if (null == this) {
       return true;
     } else if (this is String) {
-      return this.toString().isEmpty;
+      return this
+          .toString()
+          .isEmpty;
     } else if (this is Iterable) {
       return (this as Iterable).isEmpty;
     } else if (this is Map) {
@@ -84,4 +89,34 @@ extension Pt on dynamic {
     }
     return false;
   }
+}
+
+abstract class Employee {
+  String name;
+
+  int getSalary();
+}
+
+class Manager extends Employee {
+  String name;
+
+  Manager(this.name);
+
+  @override
+  int getSalary() {
+    return 15000;
+  }
+}
+
+main() {
+  // var m = Manager('王小二');
+  // (m).name.pf();
+  var a = Test();
+  a.a.pf();
+}
+
+class Test {
+  var a = 10;
+
+  Test();
 }

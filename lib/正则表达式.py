@@ -1,3 +1,4 @@
+import json
 import re
 
 phone = "2004-959-559 # 这是一个电话号码"
@@ -46,6 +47,7 @@ def tiQu():
             print(i)
     print(result)
     sub = re.sub(regx, '**/\**', strName)
+
     print(sub)
     # search = re.search(regx, strName)
     # print(search)
