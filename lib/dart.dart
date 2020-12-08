@@ -112,6 +112,7 @@ main() {
   // var m = Manager('王小二');
   // (m).name.pf();
   testApi();
+  // var client = HttpClient();
 }
 
 class Test {
@@ -140,9 +141,9 @@ void testApi() async {
   var req = await client.openUrl(
     'GET',
     Uri(
-      scheme: 'http',
-      // path: 'top250',
-      host: '127.0.0.1',
+      scheme: 'https',
+      path: 'top250',
+      host: 'movie.douban.com',
       port: 9999,
       queryParameters: {'start': '25'},
     ),
