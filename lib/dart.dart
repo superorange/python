@@ -1,3 +1,5 @@
+import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
 void e() {
@@ -109,12 +111,45 @@ class Manager extends Employee {
 main() {
   // var m = Manager('王小二');
   // (m).name.pf();
-  var a = Test();
-  a.a.pf();
+  testApi();
 }
 
 class Test {
   var a = 10;
 
   Test();
+}
+
+void testApi() async {
+  // var res = Dio.get(
+  //      url=f'https://movie.douban.com/top250?start={page * 25}',
+  //      headers={
+  //        'Accept': '*/*',
+  //        'Accept-Encoding': 'gzip,deflate,br',
+  //        'Connection': 'keep-alive',
+  //        'Host': 'movie.douban.com',
+  //        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
+  //            'Chrome/87.0.4280.66 Safari/537.36 '
+  //        # 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)'
+  //      },
+  //      timeout=5
+  //
+  //  )
+  var client = HttpClient();
+
+  var req = await client.openUrl(
+    'GET',
+    Uri(
+      scheme: 'http',
+      // path: 'top250',
+      host: '127.0.0.1',
+      port: 9999,
+      queryParameters: {'start': '25'},
+    ),
+  );
+  print(req.uri);
+  var res = await req.done;
+  res.transform(StreamTransformer.castFrom(Utf8Decoder())).listen((event) {
+    print(event);
+  });
 }

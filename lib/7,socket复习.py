@@ -1,0 +1,22 @@
+from socket import socket, AF_INET, SOCK_STREAM
+
+sock = socket(family=AF_INET, type=SOCK_STREAM)
+sock.bind(('127.0.0.1', 9999))
+sock.listen(10)
+while True:
+    fd, addr = sock.accept()
+    request = fd.recv(1020)
+    # method = request.split(' ')[0]
+    # src = request.split(' ')[1]
+    print('Connect by: ', addr)
+    for i in request.split('\r\n'.encode('utf-8')):
+        print(i)
+    json_data = '{"code": 200, "msg": "Python Ok"}'
+    res_data = 'HTTP/3.1 200 OK\r\n' \
+               'Accept: *\r\n' \
+               'Connection: keep-alive\r\n' \
+               'Content-Type: application/json\r\n\r\n' \
+               f'{json_data}'
+    fd.sendall(res_data.encode(encoding='utf-8'))
+
+    fd.close()
