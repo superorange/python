@@ -1,24 +1,19 @@
-import 'dart:convert';
-import 'dart:io';
+import 'package:all_websocket/all_websocket.dart';
 
-void main() async {
-  var socket = await ServerSocket.bind('127.0.0.1', 9998);
-  socket.listen(_onListen);
-}
+main() async {
+  // SecureSocket socket = await SecureSocket.connect(
+  //     'api.huobi.pro/ws/v2/market/*', 443,
+  //     onBadCertificate: (X509Certificate cert) => true);
+  // WebSocket.fromUpgradedSocket(socket)
+  // var webSocket = WebSocket.fromUpgradedSocket(socket, serverSide: false);
+  // webSocket.listen(print);
+  // var rSocket =
+  //     await RawSocket.connect('http://api.huobi.pro/ws/v2/market/*', 443);
+  // rSocket.listen(print);
 
-var jsonData = {'code': 200, 'msg': 'Hello World'};
-
-var _obj = "HTTP/1.1 200 OK\r\n"
-    "Accept: *\r\n"
-    "Connection: keep-alive\r\n"
-    "Content-Type: application/json\r\n\r\n"
-    "${jsonEncode(jsonData)}";
-
-void _onListen(Socket socket) {
-  socket.listen((event) {
-    print(utf8.decode(event));
-  });
-
-  socket.write(_obj);
-  socket.close();
+  var socket = WebSocket();
+  var cSocket = await socket.connect('wss://api.huobi.pro/ws/v2/market/*');
+  cSocket.onResponse = (v) async {
+    print(v);
+  };
 }
