@@ -20,9 +20,6 @@ def indexTest():
     print(a.rjust(len(a) + 10, '*'))
     for i, k in enumerate(a):
         print('%i,k:%s' % (i, k))
-    a = [(x, y) for x in range(100) for y in range(20) if x == y]
-
-    print(sys.getsizeof(a))
     b = 10
     c = 10.0
     d = 10.00
