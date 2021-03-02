@@ -1,16 +1,6 @@
 import json
 import re
-import mysql.connector
-
-mydb = mysql.connector.connect(
-    host='localhost',
-    user='root',
-    passwd='123456',
-    database='test'
-)
-phone = "2004-959-559 # 这是一个电话号码"
-
-result = re.findall(r'\D', phone)
+import pymysql
 
 
 # print(result)
@@ -1641,11 +1631,32 @@ for(var i = 0, l = accounts.length; i < l; i++) {
                 ttl.append(url[0])
                 ttl.append(url[2])
                 top250.append(ttl)
-    print(top250)
 
-    for item in top250:
-        pass
+    return top250
+
+
+def connectSQL():
+    mydb = pymysql.connect(
+        host='localhost',
+        user='root',
+        passwd='123456',
+        database='test'
+    )
+    return mydb.cursor(), mydb
 
 
 if __name__ == '__main__':
-    douBan()
+    data = douBan()
+    cursor, conn = connectSQL()
+    result = cursor.execute(
+        'create table if not exists douban250(id int auto_increment primary key,name varchar (200) not null,oName varchar (250),picPath varchar(250),desUrl varchar (250))')
+    if result == 1:
+        print('success')
+    else:
+        print('error')
+    for i in data:
+        cursor.execute(
+            f"insert into douban250 (name,oName,picPath,desUrl) values (\"{i[0]}\",\"{i[1]}\",\"{i[4]}\",\"{i[3]}\")"
+        )
+    conn.commit()
+    conn.close()
